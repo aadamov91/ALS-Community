@@ -36,7 +36,7 @@ EBTNodeResult::Type UALS_BTTask_GetRandomLocation::ExecuteTask(UBehaviorTreeComp
 			}
 		}
 
-		const FVector Origin = Pawn->GetActorLocation();
+		const FVector Origin = OriginLocation == Origin::Self ? Pawn->GetActorLocation() : OwnerComp.GetBlackboardComponent()->GetValueAsVector(GetSelectedBlackboardKey());
 		FNavLocation Destination;
 
 		if (NavSys->GetRandomReachablePointInRadius(Origin, MaxDistance, Destination, nullptr, SharedFilter))
